@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="/css/styles.css">
+
+
+    <!-- google fonts cdn -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="box" id="heading">
+        <h1>
+            <%= kindOfDay %>
+        </h1>
+
+    </div>
+
+    <div class="box box1" id="left">
+
+        <% for(var i=0; i<newResponse.length; i++) { %>
+
+            <div class="item list" draggable="true">
+                <input type="checkbox">
+                <p>
+                    <%= newResponse[i] %>
+                </p>
+            </div>
+            <% } %>
+
+
+
+                <form class="tasks" method="post">
+                    <input type="text" id="task1" name="username" placeholder="Add Your task " autocomplete="off"> 
+                    <button type="submit">+</button>
+                
+                    
+    </div>
+
+    <div class="box box1" id="right">
+        <h2 class="heading2">Completed tasks</h2> 
+    </div>
+
+
+
+
+
+
+
+    </form>
+
+
+    <script>
+        let lists = document.getElementsByClassName("list");
+        let rightBox = document.getElementById("right");
+        let leftBox = document.getElementById("left");
+
+        for(list of lists){
+            list.addEventListener("dragstart", function(e){
+                let selected = e.target;
+
+                rightBox.addEventListener("dragover", function(e){
+                    e.preventDefault();
+                });
+                rightBox.addEventListener("drop", function(e){
+                    rightBox.appendChild(selected);
+                    selected = null;
+                })
+            })
+        }
+
+    </script>
+
+
+</body>
+
+</html>
